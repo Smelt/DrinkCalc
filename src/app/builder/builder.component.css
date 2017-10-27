@@ -1,0 +1,27 @@
+.background{
+    background: url("https://static.pexels.com/photos/301378/pexels-photo-301378.jpegx");
+    background-color: gold;
+    background-size: cover;
+    background-position: center;
+    height: 1000px;
+    margin-top: -3%;
+  
+}
+
+.container{
+    padding-top: 3%;
+}
+
+#pic{
+    width: 18%;
+    height: 100%;
+    display: inline-block;
+    *display:inline; /* ie7 fix */
+    float: none; /* this is the part that makes it work */
+}
+
+
+
+.thumbnail > li {
+ 
+}
