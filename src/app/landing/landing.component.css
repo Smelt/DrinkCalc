@@ -1,0 +1,43 @@
+.landingImage{
+    background: url("https://static.pexels.com/photos/301692/pexels-photo-301692.jpeg");
+    background-size: cover;
+    background-position: center;
+    height: 1000px;
+    color: white;
+    margin-top: -3%;
+  
+}
+
+
+
+#centerText{
+  text-align: center;
+  padding-top: 23%;
+}
+
+.aboutText{
+  margin-top: 10%;
+
+}
+
+h1{
+  font-weight: 700px;
+  font-size: 5em;
+      
+  text-shadow: 0px 4px 3px rgba(0,0,0,0.3),
+          0px 6px 9px rgba(0,0,0,0.1),
+          0px 11px 15px rgba(0,0,0,0.1)
+}
+
+h3{
+
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3),
+          0px 2px 3px rgba(0,0,0,0.1),
+          0px 3px 5px rgba(0,0,0,0.1)
+}
+
+hr{
+  color: lightgray;
+  width: 400px;
+  border: black 1px, 1px, 1px, 1px;
+}
