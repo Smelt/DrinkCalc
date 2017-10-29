@@ -1,0 +1,60 @@
+<div class="background">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+
+      </div>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1>Drink Logger</h1>
+      </div>
+      <div class="panel-body">
+        <div class="col-lg-8 offset-2">
+          <p>Add your drinks and the selected time you had them to our drink Logger
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 col-md-3">
+            <mat-card >
+             <img id="addDrinkImage" mat-card-image src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/quizzes/alcohol_myths_and_facts_quiz/650x350_alcohol_myths_and_facts_quiz.jpg"
+                alt="Photo of a Shiba Inu">
+              <mat-card-content>
+                  <label for="drinks">Drink Type</label>
+                  <mat-form-field>
+                      <mat-select placeholder="Beer">
+                          <mat-option [value]="Beer">Beer</mat-option>
+                          <mat-option [value]="Wine">Wine</mat-option>
+                          <mat-option [value]="Mixed">Mixed</mat-option>
+                          <mat-option [value]="Shot">Shot</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                <div>
+                  <label id="labelAlcoholContent" for="alcoholContent">Alcohol Content</label>
+                  <mat-slider thumb-label="true" id="alcoholContent" min="0" max="2" step="0.1" value="1.0"></mat-slider>
+                </div>
+                <div>
+                    <label for="timeConsumed">Time Consumed</label>
+                  <mat-slider thumb-label="true" id="timeConsumed" min="0" max="24" step="1" value="1.0"></mat-slider>
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <div class="resetDrinks">
+                <div class="button-row">
+                  <button mat-raised-button>Reset
+                    <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                  </button>
+                  <button mat-raised-button color="primary">Add Drink
+                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              </mat-card-actions>
+            </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
