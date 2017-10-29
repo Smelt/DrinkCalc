@@ -42,14 +42,48 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-                <mat-card>
-                    <button mat-button>All</button>
-                    <button mat-raised-button>Of</button>
-                    <button mat-raised-button color="primary">The</button>
-                    <button mat-raised-button color="accent">Buttons</button>
-                  </mat-card>
-            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="col-sm-6 col-md-4">
+          <div class="row">
+              <mat-card class="example-card">
+                  <mat-card-header id="addDrinkHeader">
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title><h3>Add drinks</h3></mat-card-title>
+                  </mat-card-header >
+                  <img id="addDrinkImage" mat-card-image src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/quizzes/alcohol_myths_and_facts_quiz/650x350_alcohol_myths_and_facts_quiz.jpg" alt="Photo of a Shiba Inu">
+                  <mat-card-content>
+                    
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">Wine</button>
+                        <button type="button" class="btn btn-default">Beer</button>
+                        <button type="button" class="btn btn-default">Mixed</button>
+                        <button type="button" class="btn btn-default">Shots</button>
+                      </div>
+                      
+                      <br>
+                      <mat-slider  min="1" max="5" step="0.5" value="1.5"></mat-slider>
+                      <mat-slider step="4" tickInterval="3"></mat-slider>
+                      <br>
+                  </mat-card-content>
+                  
+                  <mat-card-actions>
+                 
+                      <div class="button-row">
+                        <button mat-raised-button>Reset <i class="fa fa-circle-o-notch" aria-hidden="true"></i></button>
+                        <button mat-raised-button color="primary">Add Drink <i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                      </div>
+
+                      
+                  </mat-card-actions>
+                </mat-card>
+                <br>
+                <md-toolbar color="primary">
+                    <span>My Application </span>
+                  </md-toolbar>
           </div>
         </div>
       </div>
