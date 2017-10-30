@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { User} from '../model/user.model'
+import {Drink} from '../model/drink.model';
 
 @Component({
   selector: 'app-builder',
@@ -7,29 +10,79 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuilderComponent implements OnInit {
 
-  constructor() { }
+  drinksArr: Drink[];
+  user: User;
+  alcoholConsumed: number = 0;
+  rawBAC: number = 0;
+  actualBAC: number = 0;
+  drinkTime: number;
+  drinkType: string = "Beer";
+  drinkContent: number = 1;
+  calorieCount = 0;
+
+  constructor() {
+    this.drinkTime = BuilderComponent.getCurrHour();
+   }
 
   ngOnInit() {
+    this.drinksArr = new Array();
+
+    this.user = new User("Tom", "Smith", "male", 185);
   }
 
-  autoTicks = false;
-  disabled = false;
-  invert = false;
-  max = 100;
-  min = 0;
-  showTicks = false;
-  step = 1;
-  thumbLabel = false;
-  value = 0;
-  vertical = false;
+  onAddDrink(){
+    const type = this.drinkType;
+    const content = this.drinkContent;
+    const time = this.drinkTime;
+    this.drinksArr.push(new Drink(type,time,content));
+    this.calculateBAC();
+    this.onResetDrink()
+   
+  }
 
-  get tickInterval(): number | 'auto' {
-    return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
+  onResetDrink(){
+    this.drinkContent = 1;
+    this.drinkTime = 12;
+    this.drinkType = "Beer";
   }
-  set tickInterval(v) {
-    this._tickInterval = Number(v);
+
+   getBlue(){
+    return "green";
   }
-  private _tickInterval = 1;
+  
+  static getCurrHour(){
+    const d: Date = new Date();
+    return d.getHours();
+  }
+
+  firstDrinkConsumed(){
+    let e = 100;
+    for(let d of this.drinksArr){
+      if(d.time < e ){
+        e = d.time;
+      }
+    }
+    return e;
+  }
+  
+  calculateBAC(){
+    let totalDrinksConsumed = 0;
+    this.calorieCount = 0;
+    for(let d of this.drinksArr){
+      totalDrinksConsumed += d.size;
+      this.calorieCount += d.calories;
+    }
+    this.alcoholConsumed = totalDrinksConsumed;
+    let gramsAlcohol = 14 * totalDrinksConsumed;
+    let gramsBody = 454 * this.user.weight;
+    let rawBAC  = ((gramsAlcohol)/(gramsBody * this.user.sexConstant)) * 100;
+    this.rawBAC = rawBAC;
+    let firstDrinkHour = this.firstDrinkConsumed();
+    let currHour = BuilderComponent.getCurrHour();
+    let timeElapsed = currHour - firstDrinkHour;
+
+  }
 }
+
 
 
