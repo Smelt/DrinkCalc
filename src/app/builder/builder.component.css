@@ -19,27 +19,7 @@
     margin-bottom: 12%;
 }
 
-.Wine{
-    height: 200px;
-    background-color: purple;
- 
-}
 
-.Shot{
-    color: lightslategrey;
-    height: 200px;
-
-}
-
-.Beer{
-    background-color: gold;
-    height: 200px;
-}
-
-.Mixed{
-    background-color: red;
-    height: 200px;
-}
 
 #drinkCardImage{
     width: 100%;

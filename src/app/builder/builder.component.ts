@@ -27,8 +27,9 @@ export class BuilderComponent implements OnInit {
 
   onAddDrink(){
     this.drinksArr.push(this.emptyDrink);
-    this.emptyDrink = new Drink("Wine",12,1.0);
     this.calculateBAC();
+    this.emptyDrink = new Drink("Beer",12,1.0);
+   
   }
 
   onResetDrink(){
