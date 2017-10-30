@@ -10,7 +10,7 @@ import {Drink} from '../model/drink.model';
 })
 export class BuilderComponent implements OnInit {
 
-  drinksArr: Drink[];
+  drinksArr: Drink[] = new Array();  s;
   user: User;
   alcoholConsumed: number = 0;
   rawBAC: number = 0;
@@ -25,8 +25,6 @@ export class BuilderComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.drinksArr = new Array();
-
     this.user = new User("Tom", "Smith", "male", 185);
   }
 
@@ -80,7 +78,6 @@ export class BuilderComponent implements OnInit {
     let firstDrinkHour = this.firstDrinkConsumed();
     let currHour = BuilderComponent.getCurrHour();
     let timeElapsed = currHour - firstDrinkHour;
-
   }
 }
 
