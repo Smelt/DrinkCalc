@@ -15,22 +15,26 @@ export class BuilderComponent implements OnInit {
   alcoholConsumed: number = 0;
   rawBAC: number = 0;
   actualBAC: number = 0;
-  drinkTime: number = 12;
+  drinkTime: number;
   drinkType: string = "Beer";
   drinkContent: number = 1;
+  calorieCount = 0;
 
-  constructor() { }
+  constructor() {
+    this.drinkTime = BuilderComponent.getCurrHour();
+   }
 
   ngOnInit() {
     this.drinksArr = new Array();
+
     this.user = new User("Tom", "Smith", "male", 185);
   }
 
   onAddDrink(){
     const type = this.drinkType;
     const content = this.drinkContent;
-    const time = this.drinkContent;
-    this.drinksArr.push(new Drink(type,content,time));
+    const time = this.drinkTime;
+    this.drinksArr.push(new Drink(type,time,content));
     this.calculateBAC();
     this.onResetDrink()
    
@@ -63,8 +67,10 @@ export class BuilderComponent implements OnInit {
   
   calculateBAC(){
     let totalDrinksConsumed = 0;
+    this.calorieCount = 0;
     for(let d of this.drinksArr){
       totalDrinksConsumed += d.size;
+      this.calorieCount += d.calories;
     }
     this.alcoholConsumed = totalDrinksConsumed;
     let gramsAlcohol = 14 * totalDrinksConsumed;
@@ -73,6 +79,8 @@ export class BuilderComponent implements OnInit {
     this.rawBAC = rawBAC;
     let firstDrinkHour = this.firstDrinkConsumed();
     let currHour = BuilderComponent.getCurrHour();
+    let timeElapsed = currHour - firstDrinkHour;
+
   }
 }
 

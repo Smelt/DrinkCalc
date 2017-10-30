@@ -1,78 +1,76 @@
 <div class="background">
-    <div class="panel panel-inverted">
-        <div class="panel-heading">
-          <h1>Drink Logger</h1>
-        </div>
-        <div class="panel-body">
-            <h4>Total Drinks: {{alcoholConsumed | number:'3.0-0' }}</h4>
-            <h4>Raw BAC: {{rawBAC | number:'1.1-3'}}%</h4>
-        </div>
-      </div>
+  <div class="panel panel-inverted">
+    <div class="panel-body">
+      <br>
+      <h4>Total Drinks: {{alcoholConsumed | number:'1.0-0' }}</h4>
+      <h4>Raw BAC: {{rawBAC | number:'1.1-3'}}%</h4>
+      <h4>Calorie Count: {{calorieCount | number:'1.0-0' }}</h4>
+    </div>
+  </div>
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
       </div>
     </div>
     <div class="row">
-        
-        <div class="col-sm-4 col-md-3">
-            <mat-card >
-             <img id="addDrinkImage" mat-card-image src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/quizzes/alcohol_myths_and_facts_quiz/650x350_alcohol_myths_and_facts_quiz.jpg">
-              <mat-card-content>
-                  <label for="drinks">Drink Type</label>
-                  <mat-form-field>
-                      <mat-select [(ngModel)]="drinkType">
-                          <mat-option value="Beer">Beer</mat-option>
-                          <mat-option value="Wine">Wine</mat-option>
-                          <mat-option value="Mixed">Mixed</mat-option>
-                          <mat-option value="Shot">Shot</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                <div>
-             
-                  <label id="labelAlcoholContent" for="alcoholContent">Alcohol Content</label>
-                  <mat-slider  [(ngModel)]="drinkContent" thumb-label="true" id="alcoholContent" min="0" max="2" step="0.1" value="1.0"></mat-slider>
-                </div>
-                <div>
-                    <label for="timeConsumed">Time Consumed</label>
-                  <mat-slider [(ngModel)]="drinkTime" thumb-label="true" id="timeConsumed" min="0" max="24" step="1" value="1.0"></mat-slider>
-                </div>
-              </mat-card-content>
-              <mat-card-actions>
-                <div class="resetDrinks">
-                <div class="button-row">
-                  <button (click)="onResetDrink()" mat-raised-button>Reset
-                    <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
-                  </button>
-                  <button (click)="onAddDrink()" mat-raised-button color="primary">Add Drink
-                    <i class="fa fa-plus-square" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-              </mat-card-actions>
-            </mat-card>
-           
-      </div>
-      <div *ngFor="let drink  of drinksArr" class="col-sm-4 col-md-2">
-          <mat-card>
-              <mat-card-header>
-                  <mat-card-title>{{drink.type}}</mat-card-title>
-                  <mat-card-subtitle>{{drink.time}}</mat-card-subtitle>
-              </mat-card-header>
-              <img id="drinkCardImage" mat-card-image [src]="drink.imagePath" >
-              <md-card-actions>
-              <div class="button-row">
-                  <button mat-raised-button>Modify
-                    </button>
-              <button mat-raised-button color="accent">Delete
-                </button>
-                </div>
 
-           </md-card-actions>
-          </mat-card>
-        </div> 
+      <div class="col-sm-4 col-md-3">
+        <mat-card>
+          <img id="addDrinkImage" mat-card-image src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/quizzes/alcohol_myths_and_facts_quiz/650x350_alcohol_myths_and_facts_quiz.jpg">
+          <mat-card-content>
+            <label for="drinks">Drink Type</label>
+            <mat-form-field>
+              <mat-select [(ngModel)]="drinkType">
+                <mat-option value="Beer">Beer</mat-option>
+                <mat-option value="Wine">Wine</mat-option>
+                <mat-option value="Mixed">Mixed</mat-option>
+                <mat-option value="Shot">Shot</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+     <label id="labelAlcoholContent" for="alcoholContent">Alcohol Content</label>
+              <mat-slider [(ngModel)]="drinkContent" thumb-label="true" id="alcoholContent" min="0" max="2" step="0.1" value="1.0"></mat-slider>
+            </div>
+            <div>
+              <label for="timeConsumed">Time Consumed</label>
+              <mat-slider [(ngModel)]="drinkTime" thumb-label="true" id="timeConsumed" min="0" max="24" step=".5" value="1.0"></mat-slider>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="addDrinkRow">
+                <button (click)="onResetDrink()" mat-raised-button>Reset
+                  <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                </button>
+                <button (click)="onAddDrink()" mat-raised-button color="primary">Add Drink
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                </button>
+              </div>
+          </mat-card-actions>
+        </mat-card>
+
+      </div>
+      <div *ngFor="let drink  of drinksArr" class="col-sm-4 col-md-3">
+        <mat-card>
+          <mat-card-header>
+            <div id="avatar-img" mat-card-avatar [ngClass]="drink.type"></div>
+            <mat-card-title>{{drink.type}} ({{drink.size| number:'1.0-1' }}) Serving</mat-card-title>
+            <mat-card-subtitle>
+              <div class="cardCont"><p>Consumed at {{drink.time}}:00</p>
+            <p>Calories: {{drink.calories | number:'1.0-1' }}</p>
+            </div>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <md-card-actions>
+
+            <button id="duplicate" mat-button>Duplicate</button>
+            <button id="delete" mat-button color="accent">Delete
+            </button>
+
+
+          </md-card-actions>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>
-<mat-card> 
-</mat-card>
