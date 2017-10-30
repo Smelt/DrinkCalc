@@ -19,6 +19,24 @@
     margin-bottom: 12%;
 }
 
+.Wine{
+    background: URL("https://static.pexels.com/photos/416520/pexels-photo-416520.jpeg");
+    max-height: 100px;
+    border: 2px solid black;
+}
+
+.Shot{
+    background: URL("https://static.pexels.com/photos/416520/pexels-photo-416520.jpeg");
+    height: 100px;
+    border: 2px solid black;
+}
+
+.Beer{
+    background: URL("https://static.pexels.com/photos/459392/pexels-photo-459392.jpeg");
+    max-height: 100px;
+    border: 2px solid black;
+}
+
 mat-slider{
     
     width: 100%;
