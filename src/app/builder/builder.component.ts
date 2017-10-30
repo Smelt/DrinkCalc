@@ -11,29 +11,35 @@ import {Drink} from '../model/drink.model';
 export class BuilderComponent implements OnInit {
 
   drinksArr: Drink[];
-  emptyDrink: Drink;
   user: User;
   alcoholConsumed: number = 0;
   rawBAC: number = 0;
   actualBAC: number = 0;
+  drinkTime: number = 12;
+  drinkType: string = "Beer";
+  drinkContent: number = 1;
 
   constructor() { }
 
   ngOnInit() {
     this.drinksArr = new Array();
-    this.emptyDrink = new Drink("Wine",12,1.0);
     this.user = new User("Tom", "Smith", "male", 185);
   }
 
   onAddDrink(){
-    this.drinksArr.push(this.emptyDrink);
+    const type = this.drinkType;
+    const content = this.drinkContent;
+    const time = this.drinkContent;
+    this.drinksArr.push(new Drink(type,content,time));
     this.calculateBAC();
-    this.emptyDrink = new Drink("Beer",12,1.0);
+    this.onResetDrink()
    
   }
 
   onResetDrink(){
-    this.emptyDrink = new Drink("Wine",12,1.0);
+    this.drinkContent = 1;
+    this.drinkTime = 12;
+    this.drinkType = "Beer";
   }
 
    getBlue(){

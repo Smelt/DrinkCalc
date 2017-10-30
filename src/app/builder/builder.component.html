@@ -21,7 +21,7 @@
               <mat-card-content>
                   <label for="drinks">Drink Type</label>
                   <mat-form-field>
-                      <mat-select [(ngModel)]="emptyDrink.type">
+                      <mat-select [(ngModel)]="drinkType">
                           <mat-option value="Beer">Beer</mat-option>
                           <mat-option value="Wine">Wine</mat-option>
                           <mat-option value="Mixed">Mixed</mat-option>
@@ -31,11 +31,11 @@
                 <div>
              
                   <label id="labelAlcoholContent" for="alcoholContent">Alcohol Content</label>
-                  <mat-slider  [(ngModel)]="emptyDrink.size" thumb-label="true" id="alcoholContent" min="0" max="2" step="0.1" value="1.0"></mat-slider>
+                  <mat-slider  [(ngModel)]="drinkContent" thumb-label="true" id="alcoholContent" min="0" max="2" step="0.1" value="1.0"></mat-slider>
                 </div>
                 <div>
                     <label for="timeConsumed">Time Consumed</label>
-                  <mat-slider [(ngModel)]="emptyDrink.time" thumb-label="true" id="timeConsumed" min="0" max="24" step="1" value="1.0"></mat-slider>
+                  <mat-slider [(ngModel)]="drinkTime" thumb-label="true" id="timeConsumed" min="0" max="24" step="1" value="1.0"></mat-slider>
                 </div>
               </mat-card-content>
               <mat-card-actions>
