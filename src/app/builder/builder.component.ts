@@ -42,8 +42,17 @@ export class BuilderComponent implements OnInit {
   
   static getCurrHour(){
     const d: Date = new Date();
-    d.getHours();
-    return 3;
+    return d.getHours();
+  }
+
+  firstDrinkConsumed(){
+    let e = 100;
+    for(let d of this.drinksArr){
+      if(d.time < e ){
+        e = d.time;
+      }
+    }
+    return e;
   }
   
   calculateBAC(){
@@ -56,7 +65,7 @@ export class BuilderComponent implements OnInit {
     let gramsBody = 454 * this.user.weight;
     let rawBAC  = ((gramsAlcohol)/(gramsBody * this.user.sexConstant)) * 100;
     this.rawBAC = rawBAC;
-   
+    let firstDrinkHour = this.firstDrinkConsumed();
     let currHour = BuilderComponent.getCurrHour();
   }
 }

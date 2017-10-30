@@ -10,12 +10,13 @@ export class Drink {
         this.type = type;
         this.time = time;
         this.size = size;
+        console.log(type);
         switch(type){
-            case "Beer": {
+            case 'Beer': {
                 this.imagePath="https://static.pexels.com/photos/459392/pexels-photo-459392.jpeg";
                 break;
             }
-            case "Mixed": {
+            case 'Mixed': {
                 this.imagePath="https://static.pexels.com/photos/416520/pexels-photo-416520.jpeg";
                 break;
             }
