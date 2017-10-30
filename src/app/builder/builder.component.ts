@@ -13,6 +13,9 @@ export class BuilderComponent implements OnInit {
   drinksArr: Drink[];
   emptyDrink: Drink;
   user: User;
+  alcoholConsumed: number = 0;
+  rawBAC: number = 0;
+  actualBAC: number = 0;
 
   constructor() { }
 
@@ -25,6 +28,7 @@ export class BuilderComponent implements OnInit {
   onAddDrink(){
     this.drinksArr.push(this.emptyDrink);
     this.emptyDrink = new Drink("Wine",12,1.0);
+    this.calculateBAC();
   }
 
   onResetDrink(){
@@ -34,24 +38,27 @@ export class BuilderComponent implements OnInit {
    getBlue(){
     return "green";
   }
-
+  
   static getCurrHour(){
     const d: Date = new Date();
     d.getHours();
     return 3;
   }
-
+  
   calculateBAC(){
     let totalDrinksConsumed = 0;
     for(let d of this.drinksArr){
       totalDrinksConsumed += d.size;
     }
+    this.alcoholConsumed = totalDrinksConsumed;
     let gramsAlcohol = 14 * totalDrinksConsumed;
     let gramsBody = 454 * this.user.weight;
-    let rawBAC  = (gramsAlcohol)/(gramsBody * this.user.sexConstant);
+    let rawBAC  = ((gramsAlcohol)/(gramsBody * this.user.sexConstant)) * 100;
+    this.rawBAC = rawBAC;
+   
     let currHour = BuilderComponent.getCurrHour();
   }
-  
 }
+
 
 

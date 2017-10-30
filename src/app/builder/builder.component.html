@@ -4,31 +4,20 @@
           <h1>Drink Logger</h1>
         </div>
         <div class="panel-body">
-      
+            <h4>Total Drinks: {{alcoholConsumed}}</h4>
+            <h4>Raw BAC: {{rawBAC}}%</h4>
         </div>
       </div>
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
-
       </div>
     </div>
-
-
-
     <div class="row">
-        <div *ngFor="let drink  of drinksArr" class="col-sm-4 col-md-3">
-            <mat-card [ngClass]="drink.type">
-              {{drink.type}}
-              <p>Dated  {{getCurrHour()}}</p>
-              <p>Get Green  {{getBlue()}}</p>
-              <p>Text message {{BuilderComponent.getCurrHour()}}</p>
-            </mat-card>
-          </div>  
+        
         <div class="col-sm-4 col-md-3">
             <mat-card >
-             <img id="addDrinkImage" mat-card-image src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/quizzes/alcohol_myths_and_facts_quiz/650x350_alcohol_myths_and_facts_quiz.jpg"
-                alt="Photo of a Shiba Inu">
+             <img id="addDrinkImage" mat-card-image src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/quizzes/alcohol_myths_and_facts_quiz/650x350_alcohol_myths_and_facts_quiz.jpg">
               <mat-card-content>
                   <label for="drinks">Drink Type</label>
                   <mat-form-field>
@@ -62,11 +51,21 @@
               </div>
               </mat-card-actions>
             </mat-card>
+           
       </div>
+      <div *ngFor="let drink  of drinksArr" class="col-sm-4 col-md-2">
+          <mat-card [ngClass]="drink.type">
+              <mat-card-header>
+                  <mat-card-title>{{drink.type}}</mat-card-title>
+                  <mat-card-subtitle>{{drink.time}}</mat-card-subtitle>
+              </mat-card-header>
+              <img id="drinkCardImage" mat-card-image [src]="drink.imagePath" >
+              
+           
+          </mat-card>
+        </div> 
     </div>
   </div>
 </div>
-<mat-card>  <p>Dated  {{ getCurrHour() }}</p>
-  <p>Get Green  {{ getBlue() }}</p>
-  <h1>User Weight {{ user.weight }}</h1>
+<mat-card> 
 </mat-card>
