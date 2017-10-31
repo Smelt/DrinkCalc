@@ -20,6 +20,12 @@
     margin-bottom: 12%;
 }
 
+@media screen and (max-width: 600px) {
+    
+    #addDrinkImage {display:none;}
+}
+
+
 .addDrinkRow{
     margin-bottom: 2%;
     margin-left: 6%;

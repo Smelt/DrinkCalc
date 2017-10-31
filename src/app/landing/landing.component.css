@@ -22,6 +22,19 @@
   width: 100%;
 }
 
+mat-toolbar {
+  text-align: center;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+}
+
+#inputData{
+  padding-left: 20%;
+  color: white;
+}
+
+
 .example-full-width {
   width: 100%;
 }

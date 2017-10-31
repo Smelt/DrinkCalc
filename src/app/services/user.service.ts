@@ -6,7 +6,7 @@ export class UserService implements OnInit {
     
     
     ngOnInit() {
-        this.user = new User("Tom", "Smith", "male", 185);
+        this.user = new User("Tom", "Smith", "female", 80);
     }
 
     getUser(){
