@@ -9,7 +9,7 @@ export class DrinkService {
   private drinksArr: Drink[] = [];
 
   constructor(){
-    this.user = new User("Tom", "Smith", "male", 185);
+    this.user = new User("Tom", "Smith", "male","MAryland", 185);
   }
 
 

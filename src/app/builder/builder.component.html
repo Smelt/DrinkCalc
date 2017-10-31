@@ -13,6 +13,7 @@
         <h4>{{actualBAC | number:'1.1-3'}}%</h4>
         <h4>{{calorieCount | number:'1.0-0' }}</h4>
         <h4>{{alcoholConsumed | number:'1.0-0' }}</h4>
+
       </div>
     </div>
   </div>
@@ -60,8 +61,11 @@
 
       </div>
       <div *ngFor="let drink  of drinksArr" class="col-xs-6 col-md-3">
-        <mat-card>
+        <mat-card id="displayDrink">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
           <mat-card-header>
+            
             <div id="avatar-img" mat-card-avatar [ngClass]="drink.type"></div>
             <mat-card-title>{{drink.type}} ({{drink.serving| number:'1.0-1' }}) Serving</mat-card-title>
             <mat-card-subtitle>

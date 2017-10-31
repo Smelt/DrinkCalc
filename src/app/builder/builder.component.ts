@@ -10,7 +10,7 @@ import {DrinkService } from '../services/drinks.service';
   templateUrl: './builder.component.html',
   styleUrls: ['./builder.component.css']
 })
-export class BuilderComponent implements OnInit {
+export class BuilderComponent implements OnInit  {
 
   drinksArr: Drink[] = new Array();  
   user: User;
@@ -26,10 +26,11 @@ export class BuilderComponent implements OnInit {
   constructor(private userService: UserService, private drinkService: DrinkService) {
     this.drinkTime = DrinkService.getCurrHour();
     this.drinksArr = drinkService.getDrinksArr();
+    this.user = this.userService.getUser();
    }
 
   ngOnInit() {
-    this.user = new User("Tom", "Smith", "male", 185);
+   
   }
 
   onAddDrink(){
@@ -42,6 +43,7 @@ export class BuilderComponent implements OnInit {
     this.actualBAC = this.drinkService.calculateBAC();
     this.rawBAC = this.drinkService.calculateRawBAC();
     this.onResetDrink();
+    console.log(this.user.firstName);
    
   }
 

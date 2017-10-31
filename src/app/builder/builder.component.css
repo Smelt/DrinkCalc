@@ -25,6 +25,11 @@
     #addDrinkImage {display:none;}
 }
 
+#displayDrink{
+    padding: 4%;
+    padding-top: 2%;
+    padding-right: 2%;
+}
 
 .addDrinkRow{
     margin-bottom: 2%;
