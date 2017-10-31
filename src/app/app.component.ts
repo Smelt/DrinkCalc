@@ -13,7 +13,7 @@ import { Observable} from 'rxjs';
 export class AppComponent implements OnInit {
   user: User
 
-  constructor(private userService: UserService){
+  constructor(public userService: UserService){
     this.user = userService.getUser();
     console.log("app constructor");
   }
