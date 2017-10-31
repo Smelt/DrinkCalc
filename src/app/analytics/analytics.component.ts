@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { User} from '../model/user.model'
+import {Drink} from '../model/drink.model';
+import {UserService } from '../services/user.service';
+import {DrinkService } from '../services/drinks.service';
 
 @Component({
   selector: 'app-analytics',
@@ -6,6 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./analytics.component.css']
 })
 export class AnalyticsComponent implements OnInit {
+
+  drinksArr: Drink[] = new Array();  
+
+  constructor(private userService: UserService, private drinkService: DrinkService) {
+      this.drinksArr = drinkService.getDrinksArr();
+   }
+  
+    ngOnInit() {
+    }
+
   public lineChartData:Array<any> = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
@@ -64,9 +78,6 @@ export class AnalyticsComponent implements OnInit {
     console.log(e);
   }
   
-  constructor() { }
-
-  ngOnInit() {
-  }
+  
 
 }

@@ -22,9 +22,10 @@ export class BuilderComponent implements OnInit {
   drinkContent: number = 1;
   calorieCount = 0;
 
+
   constructor(private userService: UserService, private drinkService: DrinkService) {
-    this.drinkTime = BuilderComponent.getCurrHour();
-    this.drinksArr = drinkService.drinksArr;
+    this.drinkTime = DrinkService.getCurrHour();
+    this.drinksArr = drinkService.getDrinksArr();
    }
 
   ngOnInit() {
@@ -36,8 +37,11 @@ export class BuilderComponent implements OnInit {
     const content = this.drinkContent;
     const time = this.drinkTime;
     this.drinkService.addDrink(new Drink(type,time,content));
-    this.calculateBAC();
-    this.onResetDrink()
+    this.calorieCount = this.drinkService.calculateCalorieCount();
+    this.alcoholConsumed = this.drinkService.totalAlcoholConsumed();
+    this.actualBAC = this.drinkService.calculateBAC();
+    this.rawBAC = this.drinkService.calculateRawBAC();
+    this.onResetDrink();
    
   }
 
@@ -45,31 +49,6 @@ export class BuilderComponent implements OnInit {
     this.drinkContent = 1;
     this.drinkTime = 12;
     this.drinkType = "Beer";
-  }
-
-  
-  static getCurrHour(){
-    const d: Date = new Date();
-    return d.getHours();
-  }
-
-  
-  
-  calculateBAC(){
-    let totalDrinksConsumed = 0;
-    this.calorieCount = 0;
-    for(let d of this.drinksArr){
-      totalDrinksConsumed += d.size;
-      this.calorieCount += d.calories;
-    }
-    this.alcoholConsumed = totalDrinksConsumed;
-    let gramsAlcohol = 14 * totalDrinksConsumed;
-    let gramsBody = 454 * this.user.weight;
-    let rawBAC  = ((gramsAlcohol)/(gramsBody * this.user.sexConstant)) * 100;
-    this.rawBAC = rawBAC;
-    let firstDrinkHour = this.drinkService.firstDrinkConsumed();
-    let currHour = BuilderComponent.getCurrHour();
-    let timeElapsed = currHour - firstDrinkHour;
   }
 }
 
