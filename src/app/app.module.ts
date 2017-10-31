@@ -10,7 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { ChartsModule } from 'ng2-charts';
-
+import {UserService } from './services/user.service';
+import {DrinkService } from './services/drinks.service';
 
 const appRoutes: Routes = [
   { path: 'build', component: BuilderComponent},
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ChartsModule
   ],
-  providers: [],
+  providers: [UserService, DrinkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

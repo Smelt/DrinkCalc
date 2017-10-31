@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { User} from '../model/user.model'
 import {Drink} from '../model/drink.model';
+import {UserService } from '../services/user.service';
+import {DrinkService } from '../services/drinks.service';
 
 @Component({
   selector: 'app-builder',
@@ -10,7 +12,7 @@ import {Drink} from '../model/drink.model';
 })
 export class BuilderComponent implements OnInit {
 
-  drinksArr: Drink[] = new Array();  s;
+  drinksArr: Drink[] = new Array();  
   user: User;
   alcoholConsumed: number = 0;
   rawBAC: number = 0;
@@ -20,8 +22,9 @@ export class BuilderComponent implements OnInit {
   drinkContent: number = 1;
   calorieCount = 0;
 
-  constructor() {
+  constructor(private userService: UserService, private drinkService: DrinkService) {
     this.drinkTime = BuilderComponent.getCurrHour();
+    this.drinksArr = drinkService.drinksArr;
    }
 
   ngOnInit() {
@@ -32,7 +35,7 @@ export class BuilderComponent implements OnInit {
     const type = this.drinkType;
     const content = this.drinkContent;
     const time = this.drinkTime;
-    this.drinksArr.push(new Drink(type,time,content));
+    this.drinkService.addDrink(new Drink(type,time,content));
     this.calculateBAC();
     this.onResetDrink()
    
@@ -44,24 +47,13 @@ export class BuilderComponent implements OnInit {
     this.drinkType = "Beer";
   }
 
-   getBlue(){
-    return "green";
-  }
   
   static getCurrHour(){
     const d: Date = new Date();
     return d.getHours();
   }
 
-  firstDrinkConsumed(){
-    let e = 100;
-    for(let d of this.drinksArr){
-      if(d.time < e ){
-        e = d.time;
-      }
-    }
-    return e;
-  }
+  
   
   calculateBAC(){
     let totalDrinksConsumed = 0;
@@ -75,7 +67,7 @@ export class BuilderComponent implements OnInit {
     let gramsBody = 454 * this.user.weight;
     let rawBAC  = ((gramsAlcohol)/(gramsBody * this.user.sexConstant)) * 100;
     this.rawBAC = rawBAC;
-    let firstDrinkHour = this.firstDrinkConsumed();
+    let firstDrinkHour = this.drinkService.firstDrinkConsumed();
     let currHour = BuilderComponent.getCurrHour();
     let timeElapsed = currHour - firstDrinkHour;
   }
