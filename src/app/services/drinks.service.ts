@@ -48,7 +48,7 @@ export class DrinkService {
     let servings = 0;
     let totalAlcoholConsumed = 0;
     for(let d of this.drinksArr){
-       servings += d.size;
+       servings += d.serving;
     }
     return servings;
   }
@@ -67,6 +67,9 @@ export class DrinkService {
     let currHour = DrinkService.getCurrHour();
     let timeElapsed = currHour - firstDrinkHour;
     let BAC = rawBAC - (0.015 * timeElapsed);
+    if(rawBAC < 0){
+      BAC = 0;
+    }
     return BAC;
   }
 
