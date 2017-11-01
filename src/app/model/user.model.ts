@@ -5,10 +5,11 @@ export class User{
     public lastName: string;
     public sexConstant: number;
     public weight: number;
-    public sex: string
+    public sex: string;
+    public dui: number;
 
 
-    constructor(firstName: string, lastName: string, sex: string, weight: number){
+    constructor(firstName: string, lastName: string, sex: string, state: string, weight: number){
         this.firstName = firstName;
         this.lastName = lastName;
         this.weight = weight;
@@ -18,6 +19,12 @@ export class User{
         }
         else{
             this.sexConstant = .55;
+        }
+        if(state === "Maryland"){
+            this.dui = .08
+        }
+        else{
+            this.dui = .04;
         }
     }
 

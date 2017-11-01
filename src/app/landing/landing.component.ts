@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService} from '../services/user.service';
+import { NgForm } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(){
+    console.log("form Subitted");
+  }
+
+  onCreateAccount(form: NgForm){
+    let value = form.value;
+    this.userService.createUser(value.firstName, value.lastName, value.sex, value.state, value.weight);
+    let closeButton = document.getElementById('closeModal');
+    console.log(value.firstName + " " + value.lastName);
+    closeButton.click();
   }
 
 }

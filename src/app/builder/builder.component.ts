@@ -2,85 +2,60 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { User} from '../model/user.model'
 import {Drink} from '../model/drink.model';
+import {UserService } from '../services/user.service';
+import {DrinkService } from '../services/drinks.service';
 
 @Component({
   selector: 'app-builder',
   templateUrl: './builder.component.html',
   styleUrls: ['./builder.component.css']
 })
-export class BuilderComponent implements OnInit {
+export class BuilderComponent implements OnInit  {
 
-  drinksArr: Drink[];
+  drinksArr: Drink[] = new Array();  
   user: User;
   alcoholConsumed: number = 0;
   rawBAC: number = 0;
   actualBAC: number = 0;
-  drinkTime: number;
+  drinkTime: Date;
   drinkType: string = "Beer";
   drinkContent: number = 1;
   calorieCount = 0;
 
-  constructor() {
-    this.drinkTime = BuilderComponent.getCurrHour();
+
+  constructor(private userService: UserService, private drinkService: DrinkService) {
+    this.drinkTime = new Date();
+    this.drinksArr = drinkService.getDrinksArr();
+    this.user = this.userService.getUser();
    }
 
-  ngOnInit() {
-    this.drinksArr = new Array();
-
-    this.user = new User("Tom", "Smith", "male", 185);
+  ngOnInit() {   
   }
 
   onAddDrink(){
+
     const type = this.drinkType;
     const content = this.drinkContent;
-    const time = this.drinkTime;
-    this.drinksArr.push(new Drink(type,time,content));
-    this.calculateBAC();
-    this.onResetDrink()
-   
+    const time = new Date();
+
+    console.log("Ad");
+    this.drinkService.addDrink(new Drink(type,time,content));
+    this.calorieCount = this.drinkService.calculateCalorieCount();
+    this.alcoholConsumed = this.drinkService.totalAlcoholConsumed();
+    this.actualBAC = this.drinkService.calculateBAC();
+    this.rawBAC = this.drinkService.calculateRawBAC();
+    this.onResetDrink();
+    console.log(this.user.firstName); 
   }
 
   onResetDrink(){
     this.drinkContent = 1;
-    this.drinkTime = 12;
+    this.drinkTime = new Date();
     this.drinkType = "Beer";
   }
 
-   getBlue(){
-    return "green";
-  }
-  
-  static getCurrHour(){
-    const d: Date = new Date();
-    return d.getHours();
-  }
-
-  firstDrinkConsumed(){
-    let e = 100;
-    for(let d of this.drinksArr){
-      if(d.time < e ){
-        e = d.time;
-      }
-    }
-    return e;
-  }
-  
-  calculateBAC(){
-    let totalDrinksConsumed = 0;
-    this.calorieCount = 0;
-    for(let d of this.drinksArr){
-      totalDrinksConsumed += d.size;
-      this.calorieCount += d.calories;
-    }
-    this.alcoholConsumed = totalDrinksConsumed;
-    let gramsAlcohol = 14 * totalDrinksConsumed;
-    let gramsBody = 454 * this.user.weight;
-    let rawBAC  = ((gramsAlcohol)/(gramsBody * this.user.sexConstant)) * 100;
-    this.rawBAC = rawBAC;
-    let firstDrinkHour = this.firstDrinkConsumed();
-    let currHour = BuilderComponent.getCurrHour();
-    let timeElapsed = currHour - firstDrinkHour;
-
+  deleteDrink(drink: Drink){
+    this.drinkService.deleteDrink(drink);
   }
 }
 

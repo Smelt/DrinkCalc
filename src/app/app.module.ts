@@ -8,12 +8,15 @@ import { BuilderComponent } from './builder/builder.component';
 import { LandingComponent } from './landing/landing.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-
-
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { ChartsModule } from 'ng2-charts';
+import {UserService } from './services/user.service';
+import {DrinkService } from './services/drinks.service';
 
 const appRoutes: Routes = [
   { path: 'build', component: BuilderComponent},
-  { path: '', component: LandingComponent}
+  { path: '', component: LandingComponent},
+  { path: 'analytics', component: AnalyticsComponent}
 ];
 
 @NgModule({
@@ -21,6 +24,7 @@ const appRoutes: Routes = [
     AppComponent,
     BuilderComponent,
     LandingComponent,
+    AnalyticsComponent,
   
   ],
   imports: [
@@ -29,9 +33,10 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ChartsModule
   ],
-  providers: [],
+  providers: [UserService, DrinkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

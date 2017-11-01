@@ -8,10 +8,49 @@
 }
 
 
-
+#createAccount {
+  margin: auto;
+}
 #centerText{
   text-align: center;
   padding-top: 23%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+mat-toolbar {
+  text-align: center;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+}
+
+#inputData{
+  padding-left: 20%;
+  color: white;
+}
+
+form {
+  margin: auto;
+}
+
+h2{
+  margin-left: 7%;
+}
+
+
+.modal {
+
+  margin: 0, 0, 25%, 25%;
+}
+
+
+.example-full-width {
+  width: 100%;
 }
 
 .aboutText{
