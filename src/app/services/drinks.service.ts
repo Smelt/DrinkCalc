@@ -7,6 +7,7 @@ export class DrinkService {
 
   private user: User;
   private drinksArr: Drink[] = [];
+  private drinksChart: number[] = [];
 
   constructor(){
     this.user = new User("Tom", "Smith", "male","Maryland", 185);
@@ -24,6 +25,14 @@ export class DrinkService {
     }
    
 
+  }
+
+  getChartData(){
+    this.drinksChart = new Array();
+    for(let i = 0; i < this.drinksArr.length; i++){
+      this.drinksChart[i] = this.dataBAC(this.drinksArr.slice(0,i)) * 200;
+    }
+    return this.drinksChart;
   }
 
 
@@ -77,6 +86,36 @@ export class DrinkService {
   }
 
   calculateBAC(){   
+    let rawBAC  = this.calculateRawBAC();
+    let firstDrinkHour = this.firstDrinkConsumed();
+    let currHour = DrinkService.getCurrHour();
+    let timeElapsed = currHour - firstDrinkHour;
+    let BAC = rawBAC - (0.015 * timeElapsed);
+    if(rawBAC < 0){
+      BAC = 0;
+    }
+    return BAC;
+  }
+
+  dataAlcoholConsumed(drinks: Drink[]){
+    let servings = 0;
+    let totalAlcoholConsumed = 0;
+    for(let d of drinks){
+       servings += d.serving;
+    }
+    return servings;
+  }
+
+
+  dataRawBAC(drinks: Drink[]){   
+    let gramsAlcohol = 14 * this.dataAlcoholConsumed(drinks);
+    console.log("Grams Alcohol " + gramsAlcohol);
+    let gramsBody = 454 * this.user.weight;
+    let rawBAC  = ((gramsAlcohol)/(gramsBody * this.user.sexConstant)) * 100;
+    return rawBAC;
+  }
+
+  dataBAC(drinks: Drink[]){   
     let rawBAC  = this.calculateRawBAC();
     let firstDrinkHour = this.firstDrinkConsumed();
     let currHour = DrinkService.getCurrHour();

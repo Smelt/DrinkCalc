@@ -12,16 +12,17 @@ import {DrinkService } from '../services/drinks.service';
 export class AnalyticsComponent implements OnInit {
 
   drinksArr: Drink[] = new Array();  
-
+  drinksData: number[] = new Array();
   constructor(private userService: UserService, private drinkService: DrinkService) {
       this.drinksArr = drinkService.getDrinksArr();
+      this.drinksData = drinkService.getChartData();
    }
   
     ngOnInit() {
     }
 
   public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: this.drinksData, label: 'Drink Data'},
     {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
     {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
   ];
@@ -59,6 +60,8 @@ export class AnalyticsComponent implements OnInit {
   public lineChartType:string = 'line';
  
   public randomize():void {
+    this.drinksData = this.drinkService.getChartData();
+    console.log("D + " + this.drinksData);
     let _lineChartData:Array<any> = new Array(this.lineChartData.length);
     for (let i = 0; i < this.lineChartData.length; i++) {
       _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
