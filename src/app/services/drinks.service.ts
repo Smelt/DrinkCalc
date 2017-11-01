@@ -9,7 +9,21 @@ export class DrinkService {
   private drinksArr: Drink[] = [];
 
   constructor(){
-    this.user = new User("Tom", "Smith", "male","MAryland", 185);
+    this.user = new User("Tom", "Smith", "male","Maryland", 185);
+  }
+
+  deleteDrink(drink: Drink){
+    let index = 0;
+    for(let i = 0; i < this.drinksArr.length; i++){
+      if(drink.time == this.drinksArr[i].time){
+        index = i;
+        console.log("found at " +  i );
+
+        this.drinksArr.splice(i, 1);
+      }
+    }
+   
+
   }
 
 
@@ -24,8 +38,9 @@ export class DrinkService {
   firstDrinkConsumed() {
     let e = 100;
     for (let d of this.drinksArr) {
-      if (d.time < e) {
-        e = d.time;
+      let hour: number = d.time.getHours();
+      if (hour < e) {
+        e = hour;
       }
     }
     return e;

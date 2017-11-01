@@ -17,40 +17,45 @@ export class BuilderComponent implements OnInit  {
   alcoholConsumed: number = 0;
   rawBAC: number = 0;
   actualBAC: number = 0;
-  drinkTime: number;
+  drinkTime: Date;
   drinkType: string = "Beer";
   drinkContent: number = 1;
   calorieCount = 0;
 
 
   constructor(private userService: UserService, private drinkService: DrinkService) {
-    this.drinkTime = DrinkService.getCurrHour();
+    this.drinkTime = new Date();
     this.drinksArr = drinkService.getDrinksArr();
     this.user = this.userService.getUser();
    }
 
-  ngOnInit() {
-   
+  ngOnInit() {   
   }
 
   onAddDrink(){
+
     const type = this.drinkType;
     const content = this.drinkContent;
-    const time = this.drinkTime;
+    const time = new Date();
+
+    console.log("Ad");
     this.drinkService.addDrink(new Drink(type,time,content));
     this.calorieCount = this.drinkService.calculateCalorieCount();
     this.alcoholConsumed = this.drinkService.totalAlcoholConsumed();
     this.actualBAC = this.drinkService.calculateBAC();
     this.rawBAC = this.drinkService.calculateRawBAC();
     this.onResetDrink();
-    console.log(this.user.firstName);
-   
+    console.log(this.user.firstName); 
   }
 
   onResetDrink(){
     this.drinkContent = 1;
-    this.drinkTime = 12;
+    this.drinkTime = new Date();
     this.drinkType = "Beer";
+  }
+
+  deleteDrink(drink: Drink){
+    this.drinkService.deleteDrink(drink);
   }
 }
 

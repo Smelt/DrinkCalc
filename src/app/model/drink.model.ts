@@ -1,13 +1,19 @@
 
 export class Drink {
     public type: string;
-    public time: number;
+    public time: Date;
     public serving: number;
     public imagePath: string;
     public calories: number;
 
+    getTimeString(){
 
-    constructor(type: string, time: number, size: number){
+        var localeSpecificTime = this.time.toLocaleTimeString();
+        return localeSpecificTime.replace(/:\d+ /, ' ');
+    }
+
+
+    constructor(type: string, time: Date, size: number){
         this.type = type;
         this.time = time;
         this.serving = size;
