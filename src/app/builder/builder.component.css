@@ -23,7 +23,7 @@
     
     #addDrinkImage {display:none;}
     #avatar-img{
-       width: 20%;
+
        border-radius: 100%;
        margin-left: 5%;
     }
@@ -82,7 +82,8 @@ mat-card{
 
 #avatar-img{
    width: 20%;  
-margin-left: 6%;
+margin-left: 5%;
+border-radius: 100%;
 }
 
 #modify{
