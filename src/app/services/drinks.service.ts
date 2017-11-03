@@ -12,6 +12,7 @@ export class DrinkService {
   private user: User;
   private drinksArr: Drink[] = [];
   private drinksChart: number[] = [];
+  private xData: string[] = [];
   private serverURL = 'https://angular-boozekick.firebaseio.com/';
 
   constructor(private http: Http ){
@@ -49,9 +50,23 @@ export class DrinkService {
   getChartData(){
     this.drinksChart = new Array();
     for(let i = 0; i < this.drinksArr.length; i++){
-      this.drinksChart[i] = this.dataBAC(this.drinksArr.slice(0,i)) * 200;
+      //this.drinksChart[i] = i * 9;
+   
+      this.drinksChart[i] = this.dataBAC(this.drinksArr.slice(0,i));
+      
     }
+   
     return this.drinksChart;
+  }
+
+  getXData(){
+    this.xData = new Array();
+    for(let i = 0; i < this.drinksArr.length; i++){   
+      this.xData[i] = this.drinksArr[i].timeString;
+      
+    }
+   
+    return this.xData;
   }
 
   updateDrinksArr(drinks: Drink[]){
@@ -117,7 +132,7 @@ export class DrinkService {
     let currHour = DrinkService.getCurrHour();
     let timeElapsed = currHour - firstDrinkHour;
     let BAC = rawBAC - (0.015 * timeElapsed);
-    if(rawBAC < 0){
+    if(BAC < 0){
       BAC = 0;
     }
     return BAC;
@@ -142,12 +157,12 @@ export class DrinkService {
   }
 
   dataBAC(drinks: Drink[]){   
-    let rawBAC  = this.calculateRawBAC();
+    let rawBAC  = this.dataRawBAC(drinks);
     let firstDrinkHour = this.firstDrinkConsumed();
     let currHour = DrinkService.getCurrHour();
     let timeElapsed = currHour - firstDrinkHour;
     let BAC = rawBAC - (0.015 * timeElapsed);
-    if(rawBAC < 0){
+    if(BAC < 0){
       BAC = 0;
     }
     return BAC;
