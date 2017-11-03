@@ -5,18 +5,13 @@ export class Drink {
     public serving: number;
     public imagePath: string;
     public calories: number;
-
-    getTimeString(){
-
-        var localeSpecificTime = this.time.toLocaleTimeString();
-        return localeSpecificTime.replace(/:\d+ /, ' ');
-    }
-
+    public timeString: string;
 
     constructor(type: string, time: Date, size: number){
         this.type = type;
         this.time = time;
         this.serving = size;
+        this.timeString = time.toLocaleTimeString().replace(/:\d+ /, ' ');
         console.log(type)
         switch(type){
             case 'Beer': {
