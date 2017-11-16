@@ -59,19 +59,18 @@
       <div *ngFor="let drink  of drinksArr" class="col-xs-6 col-md-3 col-lg-2">
         <mat-card id="displayDrink">
             <button type="button" class="close" (click)="deleteDrink(drink)"  aria-label="Close">
-                <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                <i id="trashButton" class="fa fa-trash-o" aria-hidden="true"></i></button>
+                <div id="avatar-img" [ngClass]="drink.type"></div>
           <mat-card-header id="headerDrinks" >
-            
-            <div id="avatar-img" mat-card-avatar [ngClass]="drink.type"></div>
-            <mat-card-title>{{drink.type}} ({{drink.serving| number:'1.0-1' }}) Serving</mat-card-title>
+
+
+            <mat-card-title>({{drink.serving| number:'1.0-1' }}) Serving</mat-card-title>
             <mat-card-subtitle>
               <div class="cardCont"><p><i class="fa fa-clock-o" aria-hidden="true"></i> {{drink.getTimeString() }}</p>
             <p>Calories: {{drink.calories | number:'1.0-1' }}</p>
             </div>
             </mat-card-subtitle>
           </mat-card-header>
-          <mat-card-content>          
-          </mat-card-content>
         </mat-card>
       </div>
     </div>
