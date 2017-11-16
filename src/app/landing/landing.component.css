@@ -4,7 +4,7 @@
     background-position: center;
     height: 1000px;
     color: white;
-
+    text-align: center;
 }
 
 
@@ -12,8 +12,8 @@
   margin: auto;
 }
 #centerText{
-  text-align: center;
-  padding-top: 45%;
+  padding-top: 23%;
+
 }
 
 .example-form {
@@ -45,7 +45,7 @@ h2{
 
 .modal {
 
-  margin: 0, 0, 25%, 25%;
+  margin: 40%, 0, 25%, 25%;
 }
 
 

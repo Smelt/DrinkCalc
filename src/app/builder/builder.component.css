@@ -1,12 +1,9 @@
 .background{
-    background: url("https://static.pexels.com/photos/301378/pexels-photo-301378.jpegx");
-    background-color: #dbdbdb;
+    background-color: #101010;
     background-size: cover;
     background-position: center;
     height: 100%;
     height: 1500px;
-    margin-top: -3%;
-  
 }
 
 .container{
@@ -21,7 +18,7 @@
 }
 
 @media screen and (max-width: 1100px) {
-    
+
     #addDrinkImage {display:none;}
     #avatar-img{
        margin-top: 20%;
@@ -54,11 +51,11 @@
 mat-card{
     margin-bottom: 10.5%;
     margin-right: -1%;
-    
+
 }
 
 #avatar-img{
-   width: 25%;  
+   width: 25%;
     margin-right: 5%;
 }
 
@@ -86,7 +83,7 @@ mat-card{
 
 .Shot {
     background-image: url('http://img.pixady.com/2017/10/212019_shotglass.jpeg');
-    background-size: cover; 
+    background-size: cover;
 }
 
 .Mixed {
@@ -98,7 +95,7 @@ mat-card{
     line-height: 50%;
 }
 mat-slider{
-    
+
     width: 100%;
 }
 
