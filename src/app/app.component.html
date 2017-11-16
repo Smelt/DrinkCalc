@@ -10,11 +10,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        
+
       </button>
       <a class="navbar-brand"> BoozeKick</a>
     </div>
-    
+
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,9 +23,9 @@
         <li ><a routerLink="/build" routerLinkActive="active">Log Drinks <i class="fa fa-beer" aria-hidden="true"></i></a></li>
         <li ><a routerLink="analytics" routerLinkActive="active">Analytics <i class="fa fa-line-chart" aria-hidden="true"></i></a></li>
       </ul>
-      
+
       <ul class="nav navbar-nav navbar-right">
-  
+
         <li><a *ngIf="userService.isSignedIn()">{{user.firstName}}</a></li>
       </ul>
     </div>
