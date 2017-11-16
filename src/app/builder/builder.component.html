@@ -3,13 +3,11 @@
     <div class="container-fluid">
     <div class="panel-body">
       <div class="col-lg-2 col-xs-5">
-      <br>
       <h4>BAC</h4>
       <h4>Calories:</h4>
       <h4>Servings:</h4>
     </div>
-    <div class="col-lg-2 col-xs-5">
-        <br>
+    <div  class="col-lg-2 col-xs-5">
         <h4>{{actualBAC | number:'1.1-3'}}%</h4>
         <h4>{{calorieCount | number:'1.0-0' }}</h4>
         <h4>{{alcoholConsumed | number:'1.0-0' }}</h4>
@@ -67,7 +65,7 @@
             <mat-card-title>({{drink.serving| number:'1.0-1' }}) Serving</mat-card-title>
             <mat-card-subtitle>
               <div class="cardCont"><p><i class="fa fa-clock-o" aria-hidden="true"></i> {{drink.getTimeString() }}</p>
-            <p>Calories: {{drink.calories | number:'1.0-1' }}</p>
+            <p>Caloris: {{drink.calories | number:'1.0-1' }}</p>
             </div>
             </mat-card-subtitle>
           </mat-card-header>
