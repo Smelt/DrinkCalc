@@ -9,10 +9,11 @@
 
 
 #createAccount {
+  padding-top: 5%;
   margin: auto;
 }
 #centerText{
-  padding-top: 23%;
+  padding-top: 15%;
 
 }
 
@@ -79,3 +80,15 @@ hr{
   width: 400px;
   border: black 1px, 1px, 1px, 1px;
 }
+
+ @media screen and (max-width: 1100px) {
+  #centerText{
+  padding-top: 45%;
+
+}
+#createAccount {
+  padding-top: 25%;
+  margin: auto;
+}
+}
+
