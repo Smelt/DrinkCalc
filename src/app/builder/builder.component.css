@@ -1,5 +1,5 @@
 .background{
-    background-color: #101010;
+    background-color: #474747;
     background-size: cover;
     background-position: center;
     height: 100%;
@@ -73,21 +73,21 @@ mat-card{
   }
 
 .Beer {
-    background-image: url('https://static.pexels.com/photos/209582/pexels-photo-209582.png');
+    background-image: url('../../../res/images/beer.png');
     background-size: cover;
 }
 .Wine {
-    background-image: url('https://static.pexels.com/photos/15229/pexels-photo.jpg');
+    background-image: url('../../../res/images/wine.png');
     background-size: cover;
 }
 
 .Shot {
-    background-image: url('http://img.pixady.com/2017/10/212019_shotglass.jpeg');
+    background-image: url('../../../res/images/shotGlass.png');
     background-size: cover;
 }
 
 .Mixed {
-    background-image: url('http://img.pixady.com/2017/10/393169_mixeddrink.jpeg');
+    background-image: url('../../../res/images/mixedDrink.png');
     background-size: cover;
 }
 
