@@ -1,24 +1,17 @@
 import { Drink } from '../model/drink.model';
 import { UserService} from './user.service';
 import { User} from '../model/user.model';
-import { Injectable} from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import 'rxjs/Rx';
-import 'rxjs/add/operator/finally'; 
 
-@Injectable()
+
 export class DrinkService {
 
   private user: User;
   private drinksArr: Drink[] = [];
   private drinksChart: number[] = [];
-  private xData: string[] = [];
-  private serverURL = 'https://angular-boozekick.firebaseio.com/';
 
-  constructor(private http: Http ){
+  constructor(){
     this.user = new User("Tom", "Smith", "male","Maryland", 185);
   }
-
 
   deleteDrink(drink: Drink){
     let index = 0;
@@ -30,47 +23,16 @@ export class DrinkService {
         this.drinksArr.splice(i, 1);
       }
     }
-  }
+   
 
-  storeDrinksDB(){
-    const headers = new Headers({'Content-Type': 'application/json'})
-    return this.http.put(this.serverURL + "data.json" , this.drinksArr, {headers: headers});
-  }
-
-  getDrinksDB(){
-   return this.http.get(this.serverURL + "data.json")
-   .map(
-      (response) => {
-        const data = response.json();
-        return data;
-      }
-    );
   }
 
   getChartData(){
     this.drinksChart = new Array();
     for(let i = 0; i < this.drinksArr.length; i++){
-      //this.drinksChart[i] = i * 9;
-   
-      this.drinksChart[i] = this.dataBAC(this.drinksArr.slice(0,i));
-      
+      this.drinksChart[i] = this.dataBAC(this.drinksArr.slice(0,i)) * 200;
     }
-   
     return this.drinksChart;
-  }
-
-  getXData(){
-    this.xData = new Array();
-    for(let i = 0; i < this.drinksArr.length; i++){   
-      this.xData[i] = this.drinksArr[i].timeString;
-      
-    }
-   
-    return this.xData;
-  }
-
-  updateDrinksArr(drinks: Drink[]){
-    this.drinksArr = drinks;
   }
 
 
@@ -85,8 +47,7 @@ export class DrinkService {
   firstDrinkConsumed() {
     let e = 100;
     for (let d of this.drinksArr) {
-      let conT = new Date(d.time);
-      let hour: number = conT.getHours();
+      let hour: number = d.time.getHours();
       if (hour < e) {
         e = hour;
       }
@@ -102,11 +63,8 @@ export class DrinkService {
   calculateCalorieCount(){
     let sum = 0;
     for(let d of this.drinksArr){
-      let dCals = Number(d.calories);
-      console.log(dCals + " L");
-      sum += dCals;
+      sum += d.calories;
     }
-  
     return sum;
   }
 
@@ -121,6 +79,7 @@ export class DrinkService {
 
   calculateRawBAC(){   
     let gramsAlcohol = 14 * this.totalAlcoholConsumed();
+    console.log("Grams Alcohol " + gramsAlcohol);
     let gramsBody = 454 * this.user.weight;
     let rawBAC  = ((gramsAlcohol)/(gramsBody * this.user.sexConstant)) * 100;
     return rawBAC;
@@ -132,7 +91,7 @@ export class DrinkService {
     let currHour = DrinkService.getCurrHour();
     let timeElapsed = currHour - firstDrinkHour;
     let BAC = rawBAC - (0.015 * timeElapsed);
-    if(BAC < 0){
+    if(rawBAC < 0){
       BAC = 0;
     }
     return BAC;
@@ -157,12 +116,12 @@ export class DrinkService {
   }
 
   dataBAC(drinks: Drink[]){   
-    let rawBAC  = this.dataRawBAC(drinks);
+    let rawBAC  = this.calculateRawBAC();
     let firstDrinkHour = this.firstDrinkConsumed();
     let currHour = DrinkService.getCurrHour();
     let timeElapsed = currHour - firstDrinkHour;
     let BAC = rawBAC - (0.015 * timeElapsed);
-    if(BAC < 0){
+    if(rawBAC < 0){
       BAC = 0;
     }
     return BAC;
