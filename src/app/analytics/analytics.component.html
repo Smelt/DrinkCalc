@@ -1,4 +1,7 @@
-<div class="container-fluid">
+<p>
+  analytics works!
+</p>
+
 <div class="row">
     <div class="col-md-6">
       <div style="display: block;">
@@ -19,9 +22,9 @@
           <th *ngFor="let label of lineChartLabels">{{label}}</th>
         </tr>
         <tr *ngFor="let d of lineChartData">
-          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j] | number:'1.1-3' }}%</td>
+          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
         </tr>
       </table>
+      <button (click)="randomize()">CLICK</button>
     </div>
   </div>
-</div>
