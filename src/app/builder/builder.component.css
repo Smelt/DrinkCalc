@@ -12,16 +12,24 @@
     float: left;
     clear: left;
     height: 75px;
+
 }
 
-
-#trashButton {
-  margin-right: -8px;
+.container-fluid {
+  border-radius: 0px;
 }
+
 #drinkCardImage{
     width: 100%;
     margin: auto;
 }
+
+.sessionButtons {
+  float: right;
+  clear: left;
+}
+
+
 
 mat-card{
     margin-bottom: 4%;
@@ -64,6 +72,7 @@ mat-card{
     background-size: cover;
 }
 
+
 .cardCont{
     line-height: 50%;
 }
@@ -80,13 +89,19 @@ mat-form-field{
     #addDrinkImage {display:none;}
     #avatar-img {
     width: 33%;
-    height: 60px;
+    height: 50px;
+    margin-left: -3%;
     }
     #displayDrink {
   padding-top: 7%;
   padding-bottom: 7%;
   padding-right: 10%;
 }
+
+  p {
+    font-size: 0.8em;
+    line-height: 80%;
+  }
 
 }
 

@@ -1,5 +1,4 @@
-export class User{
-
+export class User {
 
     public firstName: string;
     public lastName: string;
@@ -7,27 +6,23 @@ export class User{
     public weight: number;
     public sex: string;
     public dui: number;
-
+    public userName: string;
 
     constructor(firstName: string, lastName: string, sex: string, state: string, weight: number){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userName = firstName + lastName;
         this.weight = weight;
         this.sex = sex;
-        if(sex === "male"){
+        if(sex === 'male'){
             this.sexConstant = .68;
         }
-        else{
-            this.sexConstant = .55;
+        else { this.sexConstant = .55;}
+        if (state === 'Maryland'){
+            this.dui = .08;
         }
-        if(state === "Maryland"){
-            this.dui = .08
-        }
-        else{
+        else {
             this.dui = .04;
         }
     }
-
-    
-
 }

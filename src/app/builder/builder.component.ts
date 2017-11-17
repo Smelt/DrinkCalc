@@ -12,7 +12,7 @@ import {DrinkService } from '../services/drinks.service';
 })
 export class BuilderComponent implements OnInit  {
 
-  drinksArr: Drink[] = new Array();  
+  drinksArr: Drink[] = new Array();
   user: User;
   alcoholConsumed: number = 0;
   rawBAC: number = 0;
@@ -29,7 +29,7 @@ export class BuilderComponent implements OnInit  {
     this.user = this.userService.getUser();
    }
 
-  ngOnInit() {   
+  ngOnInit() {
   }
 
   onAddDrink(){
@@ -57,6 +57,37 @@ export class BuilderComponent implements OnInit  {
   deleteDrink(drink: Drink){
     this.drinkService.deleteDrink(drink);
   }
+
+  getSession(){
+
+    this.drinkService.getDrinksDB()
+      .finally(() => {this.actualBAC = this.drinkService.calculateBAC();
+      this.calorieCount = this.drinkService.calculateCalorieCount();
+      console.log("FINALLY CALLEd");
+      }
+    )
+      .subscribe(
+        (drinks: any[]) => {
+          this.drinksArr = drinks;
+          this.drinkService.updateDrinksArr(this.drinksArr);
+
+        },
+        (error) => console.log(error)
+      )
+
+
+
+  }
+
+
+  storeDrinks(){
+    this.drinkService.storeDrinksDB()
+    .subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+  }
+\
 }
 
 
