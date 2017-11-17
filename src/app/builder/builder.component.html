@@ -54,8 +54,6 @@
                 <button (click)="onAddDrink()" mat-raised-button color="primary">Add Drink
                   <i class="fa fa-plus-square" aria-hidden="true"></i>
                 </button>
-
-
               </div>
           </mat-card-content>
           <mat-card-actions>
@@ -69,14 +67,9 @@
             <button type="button" class="close" (click)="deleteDrink(drink)"  aria-label="Close">
                 <i id="trashButton" class="fa fa-trash-o" aria-hidden="true"></i></button>
                 <div id="avatar-img" [ngClass]="drink.type"></div>
-
             <p>({{drink.serving| number:'1.0-1' }}) Serving</p>
-
               <div class="cardCont"><p><i class="fa fa-clock-o" aria-hidden="true"></i> {{drink.timeString }}</p></div>
             <p>Calories: {{drink.calories | number:'1.0-1' }}</p>
-
-
-
         </mat-card>
       </div>
     </div>

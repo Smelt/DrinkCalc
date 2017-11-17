@@ -82,13 +82,43 @@ hr{
 }
 
  @media screen and (max-width: 1100px) {
-  #centerText{
-  padding-top: 45%;
+    #centerText{
+    padding-top: 45%;
+    }
+  #createAccount {
+     padding-top: 25%;
+    margin: auto;
+  }
+  .landingImage {
+    background: url('../../../res/images/mobile_landing2.jpg'
+    );
+       background-size: cover;
+    background-position: center;
+    height: 100%;
+  }
 
+  hr{
+  color: lightgray;
+  width: 55%;
+  border: black 1px, 1px, 1px, 1px;
 }
-#createAccount {
-  padding-top: 25%;
-  margin: auto;
+
+
+h1{
+  font-weight: 500px;
+  font-size: 3em;
+
+  text-shadow: 0px 4px 3px rgba(0,0,0,0.5),
+          0px 6px 9px rgba(0,0,0,0.3),
+          0px 11px 15px rgba(0,0,0,0.3)
 }
+
+h3{
+  font-size: 1.14em;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6),
+          2px 2px 3px rgba(0,0,0,0.3),
+          2px 3px 5px rgba(0,0,0,0.3)
+}
+
 }
 
