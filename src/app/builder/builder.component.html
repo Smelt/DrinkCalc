@@ -69,14 +69,14 @@
             <button type="button" class="close" (click)="deleteDrink(drink)"  aria-label="Close">
                 <i id="trashButton" class="fa fa-trash-o" aria-hidden="true"></i></button>
                 <div id="avatar-img" [ngClass]="drink.type"></div>
-          <mat-card-header id="headerDrinks" >
-            <mat-card-title>({{drink.serving| number:'1.0-1' }}) Serving</mat-card-title>
-            <mat-card-subtitle>
-              <div class="cardCont"><p><i class="fa fa-clock-o" aria-hidden="true"></i> {{drink.timeString }}</p>
+
+            <p>({{drink.serving| number:'1.0-1' }}) Serving</p>
+
+              <div class="cardCont"><p><i class="fa fa-clock-o" aria-hidden="true"></i> {{drink.timeString }}</p></div>
             <p>Calories: {{drink.calories | number:'1.0-1' }}</p>
-            </div>
-            </mat-card-subtitle>
-          </mat-card-header>
+
+
+
         </mat-card>
       </div>
     </div>
