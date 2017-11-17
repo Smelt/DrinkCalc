@@ -11,56 +11,40 @@ import {DrinkService } from '../services/drinks.service';
 })
 export class AnalyticsComponent implements OnInit {
 
-  drinksArr: Drink[] = new Array();  
+  drinksArr: Drink[] = new Array();
   drinksData: number[] = new Array();
+
   constructor(private userService: UserService, private drinkService: DrinkService) {
       this.drinksArr = drinkService.getDrinksArr();
       this.drinksData = drinkService.getChartData();
    }
-  
+
     ngOnInit() {
     }
 
   public lineChartData:Array<any> = [
-    {data: this.drinksData, label: 'Drink Data'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+    {data: this.drinkService.getChartData(), label: 'BAC%'}
   ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels:Array<any> = this.drinkService.getXData();
   public lineChartOptions:any = {
     responsive: true
   };
   public lineChartColors:Array<any> = [
     { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      backgroundColor: '#ffe54c',
+      borderColor: '#ffb300',
+      pointBackgroundColor: '#ffb300',
+      pointBorderColor: '#c68400',
+      pointHoverBackgroundColor: '#ffb300',
+      pointHoverBorderColor: '#c68400'
     }
   ];
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
- 
+
   public randomize():void {
     this.drinksData = this.drinkService.getChartData();
+    console.log(this.drinksData);
     console.log("D + " + this.drinksData);
     let _lineChartData:Array<any> = new Array(this.lineChartData.length);
     for (let i = 0; i < this.lineChartData.length; i++) {
@@ -71,16 +55,16 @@ export class AnalyticsComponent implements OnInit {
     }
     this.lineChartData = _lineChartData;
   }
- 
+
   // events
   public chartClicked(e:any):void {
     console.log(e);
   }
- 
+
   public chartHovered(e:any):void {
     console.log(e);
   }
-  
-  
+
+
 
 }

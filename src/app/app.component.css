@@ -2,3 +2,7 @@ nav {
   margin: 0;
   border-radius: 0px;
 }
+
+#loginModal {
+  padding-top: 20%;
+}
