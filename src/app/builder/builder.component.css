@@ -12,14 +12,13 @@
     float: left;
     clear: left;
     height: 75px;
+
 }
 
 .container-fluid {
   border-radius: 0px;
 }
-#trashButton {
-  margin-right: -8px;
-}
+
 #drinkCardImage{
     width: 100%;
     margin: auto;
@@ -90,13 +89,19 @@ mat-form-field{
     #addDrinkImage {display:none;}
     #avatar-img {
     width: 33%;
-    height: 60px;
+    height: 50px;
+    margin-left: -3%;
     }
     #displayDrink {
   padding-top: 7%;
   padding-bottom: 7%;
   padding-right: 10%;
 }
+
+  p {
+    font-size: 0.8em;
+    line-height: 80%;
+  }
 
 }
 
