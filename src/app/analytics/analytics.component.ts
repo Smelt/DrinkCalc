@@ -13,7 +13,6 @@ export class AnalyticsComponent implements OnInit {
 
   drinksArr: Drink[] = new Array();
   drinksData: number[] = new Array();
-
   constructor(private userService: UserService, private drinkService: DrinkService) {
       this.drinksArr = drinkService.getDrinksArr();
       this.drinksData = drinkService.getChartData();
@@ -23,9 +22,11 @@ export class AnalyticsComponent implements OnInit {
     }
 
   public lineChartData:Array<any> = [
-    {data: this.drinkService.getChartData(), label: 'BAC%'}
+    {data: this.drinksData, label: 'Drink Data'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
+    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
   ];
-  public lineChartLabels:Array<any> = this.drinkService.getXData();
+  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions:any = {
     responsive: true
   };
@@ -44,7 +45,6 @@ export class AnalyticsComponent implements OnInit {
 
   public randomize():void {
     this.drinksData = this.drinkService.getChartData();
-    console.log(this.drinksData);
     console.log("D + " + this.drinksData);
     let _lineChartData:Array<any> = new Array(this.lineChartData.length);
     for (let i = 0; i < this.lineChartData.length; i++) {
